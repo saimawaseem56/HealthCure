@@ -1,0 +1,156 @@
+﻿@model HealthCure.Models.ContactMessage
+@Model.CreatedDate?.ToString("dd MMM yyyy | hh:mm tt")
+
+@{
+    ViewData["Title"] = "Message Details";
+}
+
+
+<link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+
+<div class="container mt-4">
+
+
+    <div class="card shadow">
+
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+
+            <h4 class="mb-0">
+                <i class="bi bi-envelope-fill"></i>
+                Message Details
+            </h4>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+
+            <div class="mb-3">
+
+                <label class="fw-bold">
+                    Name
+                </label>
+
+                <p>
+                    @Model.Name
+                </p>
+
+            </div>
+
+
+
+            <div class="mb-3">
+
+                <label class="fw-bold">
+                    Email
+                </label>
+
+                <p>
+                    @Model.Email
+                </p>
+
+            </div>
+
+
+
+
+            <div class="mb-3">
+
+                <label class="fw-bold">
+                    Subject
+                </label>
+
+                <p>
+                    @Model.Subject
+                </p>
+
+            </div>
+
+
+
+
+            <div class="mb-3">
+
+                <label class="fw-bold">
+                    Message
+                </label>
+
+                <div class="border rounded p-3">
+
+                    @Model.Message
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="mb-3">
+
+                <label class="fw-bold">
+                    Date
+                </label>
+                <div class="mb-3">
+
+                    <label class="fw-bold">
+                        Status
+                    </label>
+
+                    <p>
+
+                        @if (Model.IsRead == true)
+                        {
+                            <span class="badge bg-success">
+                                Read
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning">
+                                New
+                            </span>
+                        }
+
+                    </p>
+
+                </div>
+                <p>
+                    @Model.CreatedDate?.ToString("dd-MM-yyyy hh:mm tt")
+                </p>
+
+            </div>
+
+
+
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
+                Back
+
+            </a>
+            <a asp-action="Delete"
+               asp-route-id="@Model.ContactId"
+               class="btn btn-danger"
+               onclick="return confirm('Delete this message?')">
+
+                <i class="bi bi-trash"></i>
+                Delete
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>

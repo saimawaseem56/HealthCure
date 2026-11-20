@@ -1,0 +1,63 @@
+﻿@model HealthCure.Models.Appointment
+
+@{
+    ViewData["Title"] = "Update Appointment";
+}
+
+<link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-warning">
+            <h3>
+                <i class="bi bi-pencil-square"></i>
+                Update Appointment
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Edit" method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" asp-for="AppointmentId" />
+                <input type="hidden" asp-for="PatientId" />
+                <input type="hidden" asp-for="DoctorId" />
+                <input type="hidden" asp-for="AppointmentDate" />
+                <input type="hidden" asp-for="Message" />
+                <input type="hidden" asp-for="CreatedDate" />
+
+                <div class="mb-3">
+                    <label class="form-label">Appointment Status</label>
+
+                    <select asp-for="Status" class="form-select">
+
+                        <option value="Pending">Pending</option>
+
+                        <option value="Approved">Approved</option>
+
+                        <option value="Rejected">Rejected</option>
+
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-check-circle"></i>
+                    Save Changes
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+﻿@model HealthCure.Models.Service
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Service - HealthCure</title>
+    <link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                <h4>Add New Service</h4>
+            </div>
+
+            <div class="card-body">
+
+                <form asp-action="Create" method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="All"
+                         class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label>Service Title</label>
+                        <input asp-for="Title"
+                               class="form-control"
+                               placeholder="Emergency Care" />
+
+                        <span asp-validation-for="Title"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Description</label>
+                        <textarea asp-for="Description"
+                                  class="form-control"
+                                  rows="4"
+                                  placeholder="Enter service details">
+                    </textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Icon Class</label>
+                        <input asp-for="Icon"
+                               class="form-control"
+                               placeholder="bi bi-heart-pulse" />
+
+                        <small class="text-muted">
+                            Example: bi bi-heart-pulse
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Save Service
+                    </button>
+
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Back
+                    </a>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

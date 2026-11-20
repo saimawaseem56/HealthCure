@@ -1,0 +1,499 @@
+﻿@using Microsoft.AspNetCore.Http
+@model List<HealthCure.ViewModels.AppointmentViewModel>
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>HealthCure Admin Dashboard</title>
+
+    <link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+
+    <style>
+
+        body {
+            background: #f4f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .sidebar {
+            background: #1977cc;
+            min-height: 100vh;
+            padding: 25px 15px;
+        }
+
+
+            .sidebar h3 {
+                color: white;
+                text-align: center;
+                margin-bottom: 35px;
+            }
+
+
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                display: block;
+                padding: 13px;
+                border-radius: 6px;
+                margin-bottom: 8px;
+            }
+
+
+                .sidebar a:hover {
+                    background: #145da0;
+                }
+
+
+        .topbar {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        }
+
+
+        .dashboard-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,.06);
+            margin-bottom: 20px;
+        }
+
+
+            .dashboard-card i {
+                font-size: 32px;
+                color: #1977cc;
+            }
+
+
+            .dashboard-card h2 {
+                color: #1977cc;
+                font-weight: bold;
+                margin-top: 15px;
+            }
+
+
+        .dashboard-content {
+            padding: 30px;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+
+            <!-- Sidebar -->
+
+            <div class="col-md-2 sidebar">
+
+
+                <h3>HealthCure</h3>
+
+
+                <a href="/Admin/Dashboard">
+                    <i class="bi bi-speedometer2 me-2"></i>
+                    Dashboard
+                </a>
+
+
+                <a href="/Doctor/Index">
+                    <i class="bi bi-person-badge me-2"></i>
+                    Doctors
+                </a>
+
+
+                <a href="/Service/Index">
+                    <i class="bi bi-heart-pulse me-2"></i>
+                    Services
+                </a>
+
+
+                <a href="/Department/Index">
+                    <i class="bi bi-hospital me-2"></i>
+                    Departments
+                </a>
+
+
+                <a href="/Patient/Index">
+                    <i class="bi bi-people me-2"></i>
+                    Patients
+                </a>
+
+
+                <a href="/Appointment/Index">
+                    <i class="bi bi-calendar-check me-2"></i>
+                    Appointments
+                </a>
+
+
+                <a href="/Message/Index">
+                    <i class="bi bi-envelope me-2"></i>
+                    Messages
+                </a>
+
+
+                <a asp-controller="Home" asp-action="Index" class="nav-link">
+                    <i class="bi bi-house-door"></i>
+                    Visit Website
+                </a>
+                <a href="/Admin/Logout">
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    Logout
+                </a>
+
+
+            </div>
+
+
+
+            <!-- Main Content -->
+
+
+            <div class="col-md-10 p-0">
+
+
+                <div class="topbar d-flex justify-content-between align-items-center">
+
+
+                    <h4>
+                        Admin Dashboard
+                    </h4>
+
+
+                    <span>
+                        Welcome, @Context.Session.GetString("AdminName")
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="dashboard-content">
+
+
+                    <h3>
+                        Dashboard Overview
+                    </h3>
+
+
+                    <p class="text-muted">
+                        Welcome to HealthCure Hospital Management System.
+                    </p>
+
+
+
+                    <!-- Dashboard Cards -->
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-4">
+
+                            <div class="dashboard-card">
+
+                                <i class="bi bi-person-badge"></i>
+
+                                <h5>Total Doctors</h5>
+
+                                <h2>@ViewBag.TotalDoctors</h2>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="col-md-4">
+
+                            <div class="dashboard-card">
+
+                                <i class="bi bi-people"></i>
+
+                                <h5>Total Patients</h5>
+
+                                <h2>@ViewBag.TotalPatients</h2>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="col-md-4">
+
+                            <div class="dashboard-card">
+
+                                <i class="bi bi-calendar-check"></i>
+
+                                <h5>Total Appointments</h5>
+                               
+
+                                <h2>@ViewBag.TotalAppointments</h2>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="col-md-4">
+
+                            <div class="dashboard-card">
+
+                                <i class="bi bi-hospital"></i>
+
+                                <h5>Total Departments</h5>
+
+                                <h2>@ViewBag.TotalDepartments</h2>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="col-md-4">
+
+                            <div class="dashboard-card">
+
+                                <i class="bi bi-envelope"></i>
+
+                                <h5>Contact Messages</h5>
+
+                                <h2>@ViewBag.TotalMessages</h2>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <!-- Pending Appointments -->
+                    <div class="row mt-3">
+                    <div class="col-md-4">
+
+                        <div class="dashboard-card">
+
+                            <i class="bi bi-clock-history"></i>
+
+                            <h5>Pending Appointments</h5>
+
+                            <h2>@ViewBag.PendingAppointments</h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Approved Appointments -->
+
+                    <div class="col-md-4">
+
+                        <div class="dashboard-card">
+
+                            <i class="bi bi-check-circle"></i>
+
+                            <h5>Approved Appointments</h5>
+
+                            <h2>@ViewBag.ApprovedAppointments</h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Rejected Appointments -->
+                 
+                    <div class="col-md-4">
+
+                        <div class="dashboard-card">
+
+                            <i class="bi bi-x-circle"></i>
+
+                            <h5>Rejected Appointments</h5>
+
+                            <h2>@ViewBag.RejectedAppointments</h2>
+
+                        </div>
+                        </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Recent Appointments -->
+
+
+                    <div class="dashboard-card mt-4">
+
+
+                        <h4 class="mb-3">
+
+                            <i class="bi bi-calendar-check"></i>
+
+                            Recent Appointments
+
+                        </h4>
+
+
+
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered table-hover">
+
+
+                                <thead class="table-primary">
+
+                                    <tr>
+
+                                        <th>Patient</th>
+
+                                        <th>Doctor</th>
+
+                                        <th>Date</th>
+
+                                        <th>Status</th>
+
+                                        <th>Message</th>
+
+                                    </tr>
+
+
+                                </thead>
+
+
+
+                                <tbody>
+
+
+                                    @if (Model != null && Model.Count > 0)
+                                    {
+
+                                        foreach (var item in Model)
+                                        {
+
+                                            <tr>
+
+                                                <td>
+                                                    @item.PatientName
+                                                </td>
+
+
+                                                <td>
+                                                    @item.DoctorName
+                                                </td>
+
+
+                                                <td>
+                                                    @item.AppointmentDate.ToString("dd/MM/yyyy")
+                                                </td>
+
+
+                                                <td>
+
+                                                    @if (item.Status == "Approved")
+                                                    {
+                                                        <span class="badge bg-success">
+                                                            Approved
+                                                        </span>
+                                                    }
+                                                    else if (item.Status == "Rejected")
+                                                    {
+                                                        <span class="badge bg-danger">
+                                                            Rejected
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-warning text-dark">
+                                                            Pending
+                                                        </span>
+                                                    }
+
+                                                </td>
+
+
+                                                <td>
+                                                    @item.Message
+                                                </td>
+
+
+                                            </tr>
+
+                                        }
+
+                                    }
+                                    else
+                                    {
+
+                                        <tr>
+
+                                            <td colspan="5" class="text-center">
+
+                                                No appointments found
+
+                                            </td>
+
+                                        </tr>
+
+                                    }
+
+
+                                </tbody>
+
+
+                            </table>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <script src="~/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

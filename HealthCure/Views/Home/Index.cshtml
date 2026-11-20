@@ -1,0 +1,1021 @@
+﻿@model HealthCure.ViewModels.HomePageViewModel
+
+@{
+    ViewData["Title"] = "HealthCure Hospital";
+}
+
+
+
+
+        <!-- Hero Section -->
+ 
+
+        <section id="hero" class="hero section light-background">
+
+
+            <img src="~/Admin/img/hero-bg.jpg" class="img-fluid" alt="">
+
+
+
+            <div class="container position-relative">
+
+
+                <div class="welcome">
+
+                    <h2>
+                        WELCOME TO HEALTHCURE
+                    </h2>
+
+
+                    <p>
+                        Your trusted healthcare partner with experienced doctors and modern facilities.
+                    </p>
+
+
+                </div>
+
+
+
+
+                <div class="content row gy-4">
+
+
+                    <div class="col-lg-4 d-flex align-items-stretch">
+
+
+                        <div class="why-box">
+
+
+                            <h3>
+                                Why Choose HealthCure?
+                            </h3>
+
+
+
+                            <p>
+
+                                We provide quality healthcare services with professional doctors,
+                                advanced medical facilities and patient-focused care.
+
+                            </p>
+
+
+
+                            <div class="text-center">
+
+                                <a href="#about" class="more-btn">
+
+                                    <span>
+                                        Learn More
+                                    </span>
+
+                                    <i class="bi bi-chevron-right"></i>
+
+                                </a>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                    <div class="col-lg-8">
+
+
+                        <div class="row gy-4">
+
+
+                            <div class="col-xl-4">
+
+
+                                <div class="icon-box">
+
+
+                                    <i class="bi bi-heart-pulse"></i>
+
+
+                                    <h4>
+                                        Expert Doctors
+                                    </h4>
+
+
+                                    <p>
+                                        Qualified doctors available for your healthcare needs.
+                                    </p>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+                            <div class="col-xl-4">
+
+
+                                <div class="icon-box">
+
+
+                                    <i class="bi bi-hospital"></i>
+
+
+                                    <h4>
+                                        Modern Facility
+                                    </h4>
+
+
+                                    <p>
+                                        Advanced hospital facilities for better treatment.
+                                    </p>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <div class="col-xl-4">
+
+
+                                <div class="icon-box">
+
+
+                                    <i class="bi bi-person-check"></i>
+
+
+                                    <h4>
+                                        Patient Care
+                                    </h4>
+
+
+                                    <p>
+                                        We care about every patient's health and comfort.
+                                    </p>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+
+        <!-- About Section -->
+
+
+        <section id="about" class="about section">
+
+
+            <div class="container">
+
+
+                <div class="row gy-4">
+
+
+                    <div class="col-lg-6">
+
+
+                        <img src="~/Admin/img/about.jpg"
+                             class="img-fluid"
+                             alt="HealthCure">
+
+
+                    </div>
+
+
+
+                    <div class="col-lg-6 content">
+
+
+                        <h3>
+                            About HealthCure
+                        </h3>
+
+
+                        <p>
+
+                            HealthCure Hospital provides trusted medical services
+                            with experienced doctors and dedicated healthcare staff.
+
+                        </p>
+
+
+
+                        <ul>
+
+
+                            <li>
+
+                                <i class="fa-solid fa-user-doctor"></i>
+
+                                <div>
+
+                                    <h5>
+                                        Experienced Doctors
+                                    </h5>
+
+                                    <p>
+                                        Professional medical team for your treatment.
+                                    </p>
+
+                                </div>
+
+                            </li>
+
+
+
+                            <li>
+
+                                <i class="fa-solid fa-hospital"></i>
+
+                                <div>
+
+                                    <h5>
+                                        Modern Equipment
+                                    </h5>
+
+                                    <p>
+                                        Latest technology for better healthcare.
+                                    </p>
+
+                                </div>
+
+                            </li>
+
+
+
+                            <li>
+
+                                <i class="fa-solid fa-heart"></i>
+
+                                <div>
+
+                                    <h5>
+                                        Patient First
+                                    </h5>
+
+                                    <p>
+                                        Our priority is your health and satisfaction.
+                                    </p>
+
+                                </div>
+
+                            </li>
+
+
+
+                        </ul>
+
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+        <!-- Services Section -->
+<!-- Services Section -->
+
+<section id="services" class="services section">
+
+
+    <div class="container section-title">
+
+        <h2>
+            Services
+        </h2>
+
+        <p>
+            Our healthcare services for better patient care
+        </p>
+
+    </div>
+
+
+
+    <div class="container">
+
+
+        <div class="row gy-4">
+
+
+            @if (Model.Services != null)
+            {
+
+                foreach (var service in Model.Services.Where(s => s.IsActive == true))
+                {
+
+                    <div class="col-lg-4 col-md-6">
+
+
+                        <div class="service-item position-relative">
+
+
+                            <div class="icon">
+
+                                @if (!string.IsNullOrEmpty(service.Icon))
+                                {
+                                    <i class="@service.Icon"></i>
+                                }
+                                else
+                                {
+                                    <i class="bi bi-heart-pulse"></i>
+                                }
+
+                            </div>
+
+
+
+                            <h3>
+
+                                @service.ServiceId
+
+                            </h3>
+
+
+
+                            <p>
+
+                                @service.Description
+
+                            </p>
+
+
+
+                        </div>
+
+
+                    </div>
+
+                }
+
+            }
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+        <!-- Appointment Section -->
+
+
+        <section id="appointment" class="appointment section">
+
+
+            <div class="container section-title">
+
+
+                <h2>
+                    Appointment
+                </h2>
+
+
+                <p>
+                    Book your appointment with our experienced doctors
+                </p>
+
+
+            </div>
+
+
+
+
+            <div class="container text-center">
+
+
+                <a href="/Appointment/Create"
+                   class="btn btn-primary">
+
+                    Make An Appointment
+
+                </a>
+
+
+
+            </div>
+
+
+        </section>
+
+
+
+
+
+
+
+        <!-- Departments Section -->
+
+
+        <section id="departments" class="departments section">
+
+
+            <div class="container section-title">
+
+
+                <h2>
+                    Departments
+                </h2>
+
+
+                <p>
+                    Different medical departments available at HealthCure
+                </p>
+
+
+            </div>
+
+
+
+
+            <div class="container">
+
+
+                <div class="row">
+
+
+                    <div class="col-lg-3">
+
+
+                        <ul class="nav nav-tabs flex-column">
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link active"
+                                   data-bs-toggle="tab"
+                                   href="#cardiology">
+
+                                    Cardiology
+
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link"
+                                   data-bs-toggle="tab"
+                                   href="#neurology">
+
+                                    Neurology
+
+                                </a>
+
+                            </li>
+
+
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link"
+                                   data-bs-toggle="tab"
+                                   href="#pediatrics">
+
+                                    Pediatrics
+
+                                </a>
+
+                            </li>
+
+
+
+                        </ul>
+
+
+                    </div>
+
+
+
+
+
+
+                    <div class="col-lg-9">
+
+
+                        <div class="tab-content">
+
+
+
+                            <div class="tab-pane active show"
+                                 id="cardiology">
+
+
+                                <div class="row">
+
+
+                                    <div class="col-lg-8">
+
+
+                                        <h3>
+                                            Cardiology
+                                        </h3>
+
+
+                                        <p>
+
+                                            Heart related treatment and specialist doctors.
+
+                                        </p>
+
+
+                                    </div>
+
+
+
+                                    <div class="col-lg-4">
+
+
+                                        <img src="~/Admin/img/departments-1.jpg"
+                                             class="img-fluid">
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                            <div class="tab-pane"
+                                 id="neurology">
+
+
+                                <h3>
+                                    Neurology
+                                </h3>
+
+
+                                <p>
+
+                                    Brain and nervous system treatment services.
+
+                                </p>
+
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="tab-pane"
+                                 id="pediatrics">
+
+
+                                <h3>
+                                    Pediatrics
+                                </h3>
+
+
+                                <p>
+
+                                    Healthcare services for children.
+
+                                </p>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+
+
+
+
+        <!-- Doctors Section -->
+
+
+        <section id="doctors" class="doctors section">
+
+
+            <div class="container section-title">
+
+
+                <h2>
+                    Doctors
+                </h2>
+
+
+                <p>
+                    Meet our professional doctors
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="container">
+
+
+                <div class="row gy-4">
+
+
+
+                    @if (Model.Doctors != null)
+                    {
+
+
+                        foreach (var doctor in Model.Doctors)
+                        {
+
+
+                            <div class="col-lg-6">
+
+
+                                <div class="team-member d-flex align-items-start">
+
+
+
+                               
+                                    <div class="pic">
+
+                                        @if (!string.IsNullOrEmpty(doctor.ImageUrl))
+                                        {
+                                            <img src="~/Admin/img/doctors/@doctor.ImageUrl"
+                                                 class="img-fluid"
+                                                 alt="@doctor.FullName" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Admin/img/doctors/doctor1.jpg"
+                                                 class="img-fluid"
+                                                 alt="Doctor" />
+                                        }
+
+                                    </div>
+
+
+
+
+
+                                    <div class="member-info">
+
+
+                                        <h4>
+                                            @doctor.FullName
+                                        </h4>
+
+
+                                        <span>
+
+                                            @doctor.Specialization
+
+                                        </span>
+
+
+
+                                        <p>
+
+                                            @doctor.Qualification
+
+                                            <br />
+
+                                            Experience:
+                                            @doctor.Experience Years
+
+                                        </p>
+
+
+
+
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                        }
+
+
+                    }
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+        <!-- Contact Section -->
+
+
+        <section id="contact" class="contact section">
+
+
+            <div class="container section-title">
+
+
+                <h2>
+                    Contact
+                </h2>
+
+
+                <p>
+                    Contact HealthCure Hospital for appointments and queries.
+                </p>
+
+
+            </div>
+            <!-- Map Start -->
+            <div class="container mb-5">
+
+                <iframe style="border:0; width:100%; height:350px;"
+                        loading="lazy"
+                        allowfullscreen
+      
+                        src="https://www.google.com/maps?q=PIB Colony,Karachi,Pakistan&output=embed">
+                    </iframe>
+
+            </div>
+
+
+
+
+            <div class="container">
+
+
+                <div class="row gy-4">
+
+
+
+                    <div class="col-lg-4">
+
+
+                        <div class="info-item d-flex">
+
+
+                            <i class="bi bi-geo-alt flex-shrink-0"></i>
+
+
+                            <div>
+
+                                <h3>
+                                    Location
+                                </h3>
+
+                                <p>
+                                    Karachi, Pakistan
+                                </p>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+                        <div class="info-item d-flex">
+
+
+                            <i class="bi bi-telephone flex-shrink-0"></i>
+
+
+                            <div>
+
+                                <h3>
+                                    Call Us
+                                </h3>
+
+                                <p>
+                                    +92 310 2187836
+                                </p>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="info-item d-flex">
+
+
+                            <i class="bi bi-envelope flex-shrink-0"></i>
+
+
+                            <div>
+
+                                <h3>
+                                    Email
+                                </h3>
+
+                                <p>
+                                    info@healthcure.com
+                                </p>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="col-lg-8">
+
+
+                <form asp-controller="Home"
+                      asp-action="SendMessage"
+                      method="post"
+                      class="php-email-form">
+
+                    @Html.AntiForgeryToken()
+
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+
+
+
+                       <div class="row gy-4">
+                                <div class="col-md-6">
+
+                                    <input type="text"
+                                           class="form-control"
+                                           name="Name"
+                                           placeholder="Your Name">
+
+
+                                </div>
+
+
+
+
+
+                                <div class="col-md-6">
+
+
+                                    <input type="email"
+                                           class="form-control"
+                                           name="Email"
+                                           placeholder="Your Email">
+
+
+                                </div>
+
+                        <input type="text"
+                               class="form-control"
+                               name="Subject"
+                               placeholder="Subject">
+
+
+
+
+                                <div class="col-md-12">
+
+
+                             <textarea class="form-control"
+									  name="Message"
+                                      rows="5"
+                                     placeholder="Message"></textarea>
+
+
+                                </div>
+
+
+
+
+
+                                <div class="col-md-12 text-center">
+
+
+                                    <button type="submit">
+
+                                        Send Message
+
+                                    </button>
+
+
+                                </div>
+
+
+
+                            </div>
+
+
+                        </form>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+    

@@ -1,0 +1,253 @@
+﻿@model IEnumerable<HealthCure.Models.Doctor>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Doctors Management - HealthCure</title>
+
+    <link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet" />
+
+</head>
+
+<body class="bg-light">
+
+
+    <div class="container mt-5">
+
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2>
+                Doctors Management
+            </h2>
+
+
+            <a asp-action="Create"
+               class="btn btn-primary">
+
+                + Add New Doctor
+
+            </a>
+
+        </div>
+
+
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+
+
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover align-middle">
+
+
+                        <thead class="table-primary">
+
+                            <tr>
+
+                                <th>Image</th>
+
+                                <th>Name</th>
+
+                                <th>Specialization</th>
+
+                                <th>Department</th>
+
+                                <th>Qualification</th>
+
+                                <th>Experience</th>
+
+                                <th>Contact</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+
+                        <tbody>
+
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+
+
+                                    <td>
+
+                                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                        {
+
+                                            @if (item.ImageUrl.Contains("/"))
+                                            {
+                                                <img src="~/@item.ImageUrl"
+                                                     width="70"
+                                                     height="70"
+                                                     style="object-fit:cover;border-radius:50%;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Admin/img/doctors/@item.ImageUrl"
+                                                     width="70"
+                                                     height="70"
+                                                     style="object-fit:cover;border-radius:50%;" />
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                No Image
+                                            </span>
+                                        }
+
+
+                                    </td>
+
+
+
+                                    <td>
+                                        @item.FullName
+                                    </td>
+
+
+
+                                    <td>
+                                        @item.Specialization
+                                    </td>
+
+
+
+                                    <td>
+                                        @item.Department?.Name
+                                    </td>
+
+
+
+                                    <td>
+                                        @item.Qualification
+                                    </td>
+
+
+
+                                    <td>
+                                        @item.Experience Years
+                                    </td>
+
+
+
+                                    <td>
+
+                                        @item.Phone
+                                        <br />
+
+                                        @item.Email
+
+                                    </td>
+
+
+
+                                    <td>
+
+
+                                        @if (item.IsActive == true)
+                                        {
+                                            <span class="badge bg-success">
+                                                Active
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">
+                                                Inactive
+                                            </span>
+                                        }
+
+
+                                    </td>
+
+
+
+                                    <td>
+
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@item.DoctorId"
+                                           class="btn btn-warning btn-sm mb-1">
+
+                                            Edit
+
+                                        </a>
+
+
+
+                                        <form asp-action="Delete"
+                                              asp-route-id="@item.DoctorId"
+                                              method="post"
+                                              style="display:inline;"
+                                              onsubmit="return confirm('Remove this doctor?');">
+
+
+                                            @Html.AntiForgeryToken()
+
+
+                                            <button type="submit"
+                                                    class="btn btn-danger btn-sm">
+
+                                                Delete
+
+                                            </button>
+
+
+                                        </form>
+
+
+                                    </td>
+
+
+
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>

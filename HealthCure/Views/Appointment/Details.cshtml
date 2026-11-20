@@ -1,0 +1,65 @@
+﻿@model HealthCure.ViewModels.AppointmentViewModel
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3>
+                <i class="bi bi-calendar-check"></i>
+                Appointment Details
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Appointment ID</th>
+                    <td>@Model.AppointmentId</td>
+                </tr>
+
+                <tr>
+                    <th>Patient</th>
+                    <td>@Model.PatientName</td>
+                </tr>
+
+                <tr>
+                    <th>Doctor</th>
+                    <td>@Model.DoctorName</td>
+                </tr>
+
+                <tr>
+                    <th>Appointment Date</th>
+                    <td>@Model.AppointmentDate</td>
+                </tr>
+
+                <tr>
+                    <th>Status</th>
+                    <td>@Model.Status</td>
+                </tr>
+
+                <tr>
+                    <th>Message</th>
+                    <td>@Model.Message</td>
+                </tr>
+
+            </table>
+
+            <a href="/Appointment/Index" class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

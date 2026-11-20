@@ -1,0 +1,136 @@
+﻿@model HealthCure.ViewModels.AdminLoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>HealthCure - Admin Login</title>
+
+    <link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet" />
+
+    <style>
+        body {
+            background: #f1f7fc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.10);
+        }
+
+        .login-title {
+            color: #1977cc;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            padding: 12px;
+            margin-bottom: 18px;
+        }
+
+        .btn-login {
+            background: #1977cc;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+        }
+
+            .btn-login:hover {
+                background: #1465aa;
+                color: white;
+            }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #888;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h2 class="login-title">HealthCure</h2>
+
+        <p class="login-subtitle">
+            Hospital Management System
+        </p>
+
+        <h5 class="text-center mb-4">Admin Login</h5>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form action="/Admin/Login" method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+
+                <input type="text"
+                       name="Username"
+                       class="form-control"
+                       placeholder="Enter Username"
+                       value="@Model?.Username"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+
+                <input type="password"
+                       name="Password"
+                       class="form-control"
+                       placeholder="Enter Password"
+                       required />
+            </div>
+
+            <button type="submit" class="btn-login">
+                Login
+            </button>
+
+        </form>
+
+        <div class="footer-text">
+            © 2026 HealthCure Hospital. All Rights Reserved.
+        </div>
+
+    </div>
+
+</body>
+</html>

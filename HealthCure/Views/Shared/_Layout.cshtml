@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>@ViewData["Title"] - HealthCure</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="~/Admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Animation -->
+    <link href="~/Admin/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Lightbox -->
+    <link href="~/Admin/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <!-- Swiper -->
+    <link href="~/Admin/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <link href="~/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- Main Template CSS -->
+    <link href="~/Admin/css/main.css" rel="stylesheet">
+
+
+</head>
+
+
+<body>
+
+
+    <header id="header" class="header d-flex align-items-center fixed-top">
+
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+            <a asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center me-auto">
+
+                <h1 class="sitename">
+                    HealthCure
+                </h1>
+
+            </a>
+
+
+            <nav id="navmenu" class="navmenu">
+
+                <ul>
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">
+                            Home
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" asp-fragment="about">
+                            About
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" asp-fragment="services">
+                            Services
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" asp-fragment="departments">
+                            Departments
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" asp-fragment="doctors">
+                            Doctors
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" asp-fragment="contact">
+                            Contact
+                        </a>
+                    </li>
+
+
+                </ul>
+
+
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+
+            </nav>
+
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <main style="padding-top:100px;">
+
+        @RenderBody()
+
+    </main>
+
+
+    <footer id="footer" class="footer">
+
+        <div class="container text-center">
+
+            <h3>
+                HealthCure Hospital
+            </h3>
+
+            <p>
+                Quality healthcare with experienced doctors.
+            </p>
+
+            <div class="copyright">
+
+                © 2026 HealthCure. All Rights Reserved.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- JS Files -->
+
+    <script src="~/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Admin/vendor/aos/aos.js"></script>
+
+    <script src="~/Admin/vendor/glightbox/js/glightbox.min.js"></script>
+
+    <script src="~/Admin/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <script src="~/Admin/js/main.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+
+</html>

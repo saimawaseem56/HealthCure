@@ -1,0 +1,147 @@
+﻿@model HealthCure.Models.Doctor
+
+@{
+    Layout = null;
+
+    var imageUrl = string.IsNullOrWhiteSpace(Model.ImageUrl)
+        ? null
+        : Model.ImageUrl.Contains("/")
+            ? "~/" + Model.ImageUrl
+            : "~/Admin/img/doctors/" + Model.ImageUrl;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Doctor - HealthCure</title>
+
+    <link href="~/Admin/vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+                <h4>Edit Doctor</h4>
+            </div>
+
+            <div class="card-body">
+
+                <form asp-action="Edit"
+                      method="post"
+                      enctype="multipart/form-data">
+
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" asp-for="DoctorId" />
+
+                    <div asp-validation-summary="All"
+                         class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label>Doctor Name</label>
+                        <input asp-for="FullName" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Specialization</label>
+                        <input asp-for="Specialization" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Qualification</label>
+                        <input asp-for="Qualification" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Experience</label>
+                        <input asp-for="Experience"
+                               type="number"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Phone</label>
+                        <input asp-for="Phone" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Department</label>
+
+                        <select asp-for="DepartmentId"
+                                asp-items="ViewBag.DepartmentId"
+                                class="form-select">
+                            <option value="">Select Department</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Current Doctor Image</label>
+                        <br />
+
+                        @if (imageUrl != null)
+                        {
+                            <img src="@Url.Content(imageUrl)"
+                                 width="120"
+                                 height="120"
+                                 style="object-fit:cover; border-radius:8px;" />
+                        }
+                        else
+                        {
+                            <p>No image available</p>
+                        }
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Change Doctor Image</label>
+
+                        <input type="file"
+                               name="imageFile"
+                               class="form-control"
+                               accept=".jpg,.jpeg,.png,.webp" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Description</label>
+
+                        <textarea asp-for="Description"
+                                  class="form-control"
+                                  rows="4"></textarea>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input asp-for="IsActive"
+                               class="form-check-input" />
+                        <label class="form-check-label">
+                            Active Doctor
+                        </label>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-warning">
+                        Update Doctor
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary">
+                        Back
+                    </a>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
